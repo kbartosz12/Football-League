@@ -3,20 +3,18 @@ function init() {
 }
 
 function onDeviceReady() {
-	navigator.notification.beep(1);
+	navigator.notification.beep(2);
+	deviceInfo();
 }
 
 function deviceInfo() {
 
-	info =  'Hi, I am your smartphone :-)' + '\n' +
-			'=====' + '\n' +
-			'Device Name    : '     + device.name     + '\n' + 
-			'Device Cordova : '  + device.cordova + '\n' + 
-			'Device Platform: ' + device.platform + '\n' + 
-			'Device UUID    : '     + device.uuid     + '\n' + 
-			'Device Model   : '    + device.model     + '\n' + 
-			'Device Version : '  + device.version  + '\n';
+	info =  'Device Model   : '    + device.model + '<br>' + 
+			'Device Name    : '     + device.name + '<br>' + 
+			'Device Cordova : '  + device.cordova + '<br>' + 
+			'Device Platform: ' + device.platform + '<br>' + 
+			'Device UUID    : '     + device.uuid + '<br>' + 
+			'Device Version : '  + device.version + '<br>';
 
-	navigator.notification.alert(info);
-	
+	document.getElementById("deviceDetails").innerHTML = info;	
 }
