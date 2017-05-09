@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
-		id          = "myfirstapp"
+		id          = "FootballLigue"
         version     = "1.0.0" >
 
-    <name>App with jQM</name>
-    <description>My first mobile app with jQuery Mobile user interface</description>
-    <author href="http://mypersonalwebsite.com" email="johnbrown@gmail.com">
-		John Brown
-	</author>
+    <name>Football Ligue</name>
+    <description>Local Football Ligue</description>
+    
 	<platform name="android" />
 	
 	<plugin name="cordova-plugin-device" spec="~1.1.4" />
