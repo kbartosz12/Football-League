@@ -21,6 +21,7 @@ var localization=$('#localization').val();
 var players=$('#players').val();
 var coach=$('#coach').val();
 var contact=$('#contact').val();
+$.support.cors=true;
 $.ajax({
 url:"https://docs.google.com/forms/d/e/1FAIpQLSfdjSAcWZNCjkaOOPxY4DqixGhl0JcjLSy8YRx19-r8UmVZsA/formResponse",data:{"entry_1374157179":teamname,"entry_1034292343":localization,"entry_1476677440":players,"entry_139890369":coach,"entry_657858756":contact},type:"POST",dataType:"xml",statusCode: {0:function() { alert("Twoje dane zostały poprawnie zapisane!");},200:function(){alert("Twoje dane zostały poprawnie zapisane!");}}
 });
