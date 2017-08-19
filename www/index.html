@@ -26,7 +26,25 @@ $.support.cors=true;
 $.ajax({
 url:"https://docs.google.com/forms/d/e/1FAIpQLSfdjSAcWZNCjkaOOPxY4DqixGhl0JcjLSy8YRx19-r8UmVZsA/formResponse",data:{"entry_1374157179":teamname,"entry_1034292343":localization,"entry_1476677440":players,"entry_139890369":coach,"entry_657858756":contact},type:"POST",dataType:"xml",statusCode: {0:function() { alert("brak");},200:function(){alert("Twoje dane zostały poprawnie zapisane!");}}
 });
+
 }
+</script>
+
+<script>
+
+$(function() {
+
+var entries = [];
+var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Teams";
+$.getJSON( dmJSON, function(data) {
+   $.each(data.Teams, function(i, f) {
+      var tblRow = "<tr>" + "<td>" + f.Nazwa_drużyny + "</td>" + "<td>" + f.Lokalizacja + "</td>" + "</tr>"
+       $(tblRow).appendTo("#entrydata tbody");
+ });
+
+});
+
+});
 </script>
 
 
@@ -34,7 +52,8 @@ url:"https://docs.google.com/forms/d/e/1FAIpQLSfdjSAcWZNCjkaOOPxY4DqixGhl0JcjLSy
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a data-toggle="pill" href="#home">Aktualności</a>
   <a data-toggle="pill" href="#menu1">Tabela</a>
-  <a data-toggle="pill" href="#menu2">Wyniki</a>
+  <a data-toggle="pill" href="#menu2">Dodawanie drużyn</a>
+  <a data-toggle="pill" href="#teams">Drużyny</a>
   <a data-toggle="pill" href="#menu3">Terminarz</a>
   <a data-toggle="pill" href="#">Statystyki</a>
   <a data-toggle="pill" href="#">Logowanie</a>
@@ -123,7 +142,8 @@ url:"https://docs.google.com/forms/d/e/1FAIpQLSfdjSAcWZNCjkaOOPxY4DqixGhl0JcjLSy
     </tbody>
   </table>
     </div>
-    <div id="menu2" class="tab-pane fade">
+   
+   <div id="menu2" class="tab-pane fade">
     <form id="formRequest">
 
 Nazwa drużyny:<br/>
@@ -142,7 +162,7 @@ Kontakt:<br/>
 <input type="text" name="contact" id="contact" placeholder="Kontakt" /><br/>
 
 <center>
-<input type="button" name="Submit" id="Submit" onclick="postContactToGoogle()" value="Submit"/>
+<input type="button" name="Submit" id="Submit" onclick="postContactToGoogle()" value="Zapisz"/>
 <input type="reset" value="Reset"/>
 </center>
 
@@ -153,8 +173,26 @@ Kontakt:<br/>
       <h3>Menu 3</h3>
       <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
     </div>
+	<div id="teams" class="tab-pane fade">
+      <h3>Drużyny</h3>
+      <table id= "entrydata" border="1">
+<thead>
+        <th>ID</th>
+        <th>UserName</th>
+        
+    </thead>
+  <tbody>
+
+   </tbody>
+</table>
+    </div>
   </div>
 </div>
+  </div>
+  
+</div>
+
+ 
 
 
 </body>
