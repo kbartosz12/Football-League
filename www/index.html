@@ -24,7 +24,7 @@ var coach=$('#coach').val();
 var contact=$('#contact').val();
 $.support.cors=true;
 $.ajax({
-url:"https://docs.google.com/forms/d/e/1FAIpQLSfdjSAcWZNCjkaOOPxY4DqixGhl0JcjLSy8YRx19-r8UmVZsA/formResponse",data:{"entry_1374157179":teamname,"entry_1034292343":localization,"entry_1476677440":players,"entry_139890369":coach,"entry_657858756":contact},type:"POST",dataType:"xml",statusCode: {0:function() { alert("brak");},200:function(){alert("Twoje dane zostały poprawnie zapisane!");}}
+url:"https://docs.google.com/forms/d/e/1FAIpQLSfdjSAcWZNCjkaOOPxY4DqixGhl0JcjLSy8YRx19-r8UmVZsA/formResponse",data:{"entry_1374157179":teamname,"entry_1034292343":localization,"entry_1476677440":players,"entry_139890369":coach,"entry_657858756":contact},type:"POST",dataType:"xml",statusCode: {0:function() { alert("Nie udało się zapisać danych!");},200:function(){alert("Twoje dane zostały poprawnie zapisane!");}}
 });
 
 }
@@ -38,7 +38,7 @@ var entries = [];
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Teams";
 $.getJSON( dmJSON, function(data) {
    $.each(data.Teams, function(i, f) {
-      var tblRow = "<tr>" + "<td>" + f.Nazwa_drużyny + "</td>" + "<td>" + f.Lokalizacja + "</td>" + "</tr>"
+      var tblRow = "<tr>" + "<td>" + f.Nazwa_drużyny + "</td>" + "<td>" + f.Lokalizacja + "</td>" + "<td>" + f.Zawodnicy + "</td>" + "<td>" + f.Trener + "<td>" + f.Kontakt + "</td>" + "</td>"+ "</tr>"
        $(tblRow).appendTo("#entrydata tbody");
  });
 
@@ -147,19 +147,19 @@ $.getJSON( dmJSON, function(data) {
     <form id="formRequest">
 
 Nazwa drużyny:<br/>
-<input type="text" name="teamname" id="teamname" placeholder="Nazwa drużyny" /><br/>
+<input type="text" name="teamname" id="teamname" placeholder="Wprowadź nazwę drużyny" size="90" /><br/>
 
 Lokalizacja:<br/>
-<input type="text" name="localization" id="localization" placeholder="Lokalizacja" /><br/>
+<input type="text" name="localization" id="localization" placeholder="Wprowadź lokalizację boiska w formacie ulica, miasto np. Sportowa 5, Kraków" size="90"/><br/>
 
 Zawodnicy:<br/>
-<input type="text" name="players" id="players" placeholder="Zawodnicy" /><br/>
+<input type="text" name="players" id="players" placeholder="Wprowadź zawodników oddzielając imiona i nazwiska przecinkami np. Jan Nowak, Grzegorz Kowalski..."  size="90"/><br/>
 
 Trener:<br/>
-<input type="text" name="coach" id="coach" placeholder="Trener" /><br/>
+<input type="text" name="coach" id="coach" placeholder="Wprowadź imię i nazwisko trenera" size="90" /><br/>
 
 Kontakt:<br/>
-<input type="text" name="contact" id="contact" placeholder="Kontakt" /><br/>
+<input type="text" name="contact" id="contact" placeholder="Wprowadź dodatkowy kontakt np. telefon kontaktowy" size="90" /><br/>
 
 <center>
 <input type="button" name="Submit" id="Submit" onclick="postContactToGoogle()" value="Zapisz"/>
@@ -177,9 +177,11 @@ Kontakt:<br/>
       <h3>Drużyny</h3>
       <table id= "entrydata" border="1">
 <thead>
-        <th>ID</th>
-        <th>UserName</th>
-        
+        <th>Nazwa drużyny</th>
+        <th>Lokalizacja</th>
+        <th>Zawodnicy</th>
+		<th>Trener</th>
+		<th>Kontakt</th>
     </thead>
   <tbody>
 
