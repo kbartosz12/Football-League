@@ -48,15 +48,52 @@ $.getJSON( dmJSON, function(data) {
 </script>
 
 
+<script>
+
+$(function() {
+$select = $('#result');
+var entries = [];
+var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Teams";
+$.getJSON( dmJSON, function(data) {
+   $.each(data.Teams, function(i, f) {
+      $select.append('<option id="' + f.Nazwa_drużyny + '">' + f.Nazwa_drużyny + '</option>');
+ });
+
+});
+
+});
+</script>
+<script>
+
+$(function() {
+$select = $('#result2');
+var entries = [];
+var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Teams";
+$.getJSON( dmJSON, function(data) {
+   $.each(data.Teams, function(i, f) {
+      $select.append('<option id="' + f.Nazwa_drużyny + '">' + f.Nazwa_drużyny + '</option>');
+ });
+
+});
+
+});
+</script>
+
+
+
+
+
+
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a data-toggle="pill" href="#home">Aktualności</a>
-  <a data-toggle="pill" href="#menu1">Tabela</a>
-  <a data-toggle="pill" href="#menu2">Dodawanie drużyn</a>
-  <a data-toggle="pill" href="#teams">Drużyny</a>
-  <a data-toggle="pill" href="#menu3">Terminarz</a>
-  <a data-toggle="pill" href="#">Statystyki</a>
-  <a data-toggle="pill" href="#">Logowanie</a>
+  <a data-toggle="pill" href="#home" onclick="closeNav()">Aktualności</a>
+  <a data-toggle="pill" href="#menu1" onclick="closeNav()">Tabela</a>
+  <a data-toggle="pill" href="#menu2" onclick="closeNav()">Dodawanie drużyn</a>
+  <a data-toggle="pill" href="#teams" onclick="closeNav()">Drużyny</a>
+  <a data-toggle="pill" href="#results" onclick="closeNav()">Dodawanie wyników</a>
+  <a data-toggle="pill" href="#menu3" onclick="closeNav()">Terminarz</a>
+  <a data-toggle="pill" href="#" onclick="closeNav()">Statystyki</a>
+  <a data-toggle="pill" href="#" onclick="closeNav()">Logowanie</a>
 </div>
 
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Football Ligue</span>
@@ -173,6 +210,8 @@ Kontakt:<br/>
       <h3>Menu 3</h3>
       <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
     </div>
+	
+	
 	<div id="teams" class="tab-pane fade">
       <h3>Drużyny</h3>
       <table id= "entrydata" border="1">
@@ -187,6 +226,27 @@ Kontakt:<br/>
 
    </tbody>
 </table>
+    </div>
+	
+	
+	<div id="results" class="tab-pane fade">
+      <h3>Dodaj wynik meczu</h3>
+	  <form id="formRequest">
+ 
+ <label for="team1">Drużyna:</label>
+ <select id="result"></select> :
+ <input name="team1" id="team1" type="text" /> 
+<input name="team2" id="team2" type="text" /> 
+<label for="team1">Drużyna:</label>
+<select id="result2"></select>
+<center>
+<input type="button" name="Submit" id="Submit" onclick="postContactToGoogle()" value="Zapisz"/>
+<input type="reset" value="Reset"/>
+</center>
+
+
+</form>
+   
     </div>
   </div>
 </div>
