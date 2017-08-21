@@ -57,7 +57,7 @@ var result_team1=$('#result_team1').val();
 var result_team2=$('#result_team2').val();
 $.support.cors=true;
 $.ajax({
-url:"https://docs.google.com/forms/d/e/1FAIpQLSctXMIhib2RJZxWzq4CRqXItkByW1IzpOkPzU3OesLGrYEFlg/formResponse",data:{"entry_424918670":teamname1,"49456644":teamname2,"entry_975370286":result_team1,"entry_1639927409":result_team2},type:"POST",dataType:"xml",statusCode: {0:function() { alert("Nie udało się zapisać danych!");},200:function(){alert("Twoje dane zostały poprawnie zapisane!");}}
+url:"https://docs.google.com/forms/d/e/1FAIpQLSctXMIhib2RJZxWzq4CRqXItkByW1IzpOkPzU3OesLGrYEFlg/formResponse",data:{"entry_424918670":teamname1,"entry_49456644":teamname2,"entry_975370286":result_team1,"entry_1639927409":result_team2},type:"POST",dataType:"xml",statusCode: {0:function() { alert("Nie udało się zapisać danych!");},200:function(){alert("Twoje dane zostały poprawnie zapisane!");}}
 });
 
 }
