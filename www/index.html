@@ -31,7 +31,6 @@ url:"https://docs.google.com/forms/d/e/1FAIpQLSfdjSAcWZNCjkaOOPxY4DqixGhl0JcjLSy
 </script>
 
 <script>
-
 $(function() {
 
 var entries = [];
@@ -40,6 +39,22 @@ $.getJSON( dmJSON, function(data) {
    $.each(data.Teams, function(i, f) {
       var tblRow = "<tr>" + "<td>" + f.Nazwa_drużyny + "</td>" + "<td>" + f.Lokalizacja + "</td>" + "<td>" + f.Zawodnicy + "</td>" + "<td>" + f.Trener + "<td>" + f.Kontakt + "</td>" + "</td>"+ "</tr>"
        $(tblRow).appendTo("#entrydata tbody");
+ });
+
+});
+
+});
+</script>
+
+<script>
+$(function() {
+
+
+var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Calculations";
+$.getJSON( dmJSON, function(data) {
+   $.each(data.Calculations, function(i, f) {
+      var tblRow = "<tr>" + "<td>" + f.APK_Pozycja_w_tabeli + "</td>" + "<td>" + f.APK_Drużyny + "</td>" + "<td>" + f.APK_Liczba_meczów + "</td>" + "<td>" + f.APK_Mecze_wygrane + "</td>" + "<td>" + f.APK_Mecze_przegrane + "</td>"+ "<td>" + f.APK_Mecze_zremisowane + "</td>" + "<td>" + f.APK_Bramki_zdobyte + "</td>" + "<td>" + f.APK_Bramki_stracone + "</td>" + "<td>" + f.APK_Bilans_bramkowy + "</td>" + "<td>" + f.APK_Punkty + "</td>" + "</tr>"
+       $(tblRow).appendTo("#matches_table tbody");
  });
 
 });
@@ -139,62 +154,24 @@ $.getJSON( dmJSON, function(data) {
   </div>
     </div>
     <div id="menu1" class="tab-pane fade">
-      <h3>Tabela</h3>
-      <table class="table table-condensed">
-    <thead>
-      <tr>
+ <h3>Tabela</h3>
+      <table id= "matches_table" border="1">
+<thead>
         <th>Lp.</th>
         <th>Drużyna</th>
-        <th>RM</th>
+        <th>M</th>
 		<th>W</th>
-        <th>R</th>
-        <th>P</th>
+		<th>P</th>
+		<th>R</th>
 		<th>BZ</th>
-        <th>BS</th>
-        <th>RB</th>
-		<th><b>PKT</b></th>
-       
-      </tr>
+		<th>BS</th>
+		<th>BB</th>
+		<th>Pkt.</th>
     </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>Wisła Kraków</td>
-        <td>2</td>
-		<td>2</td>
-		<td>2</td>
-		<td>2</td>
-		<td>2</td>
-		<td>2</td>
-		<td>2</td>
-		<td>2</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Wisła Kraków</td>
-        <td>2</td>
-		<td>2</td>
-		<td>2</td>
-		<td>2</td>
-		<td>2</td>
-		<td>2</td>
-		<td>2</td>
-		<td>2</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Wisła Kraków</td>
-        <td>2</td>
-		<td>2</td>
-		<td>2</td>
-		<td>2</td>
-		<td>2</td>
-		<td>2</td>
-		<td>2</td>
-		<td>2</td>
-      </tr>
-    </tbody>
-  </table>
+  <tbody>
+
+   </tbody>
+</table>
     </div>
    
    <div id="menu2" class="tab-pane fade">
