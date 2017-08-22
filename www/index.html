@@ -55,9 +55,11 @@ var teamname1=$('#result').val();
 var teamname2=$('#result2').val();
 var result_team1=$('#result_team1').val();
 var result_team2=$('#result_team2').val();
+var match_day=$('#match_day').val();
+var match_time=$('#match_time').val();
 $.support.cors=true;
 $.ajax({
-url:"https://docs.google.com/forms/d/e/1FAIpQLSctXMIhib2RJZxWzq4CRqXItkByW1IzpOkPzU3OesLGrYEFlg/formResponse",data:{"entry_424918670":teamname1,"entry_49456644":teamname2,"entry_975370286":result_team1,"entry_1639927409":result_team2},type:"POST",dataType:"xml",statusCode: {0:function() { alert("Nie udało się zapisać danych!");},200:function(){alert("Twoje dane zostały poprawnie zapisane!");}}
+url:"https://docs.google.com/forms/d/e/1FAIpQLSctXMIhib2RJZxWzq4CRqXItkByW1IzpOkPzU3OesLGrYEFlg/formResponse",data:{"entry_424918670":teamname1,"entry_49456644":teamname2,"entry_975370286":result_team1,"entry_1639927409":result_team2,"entry_884365633":match_day,"entry_992001111":match_time},type:"POST",dataType:"xml",statusCode: {0:function() { alert("Nie udało się zapisać danych!");},200:function(){alert("Twoje dane zostały poprawnie zapisane!");}}
 });
 
 }
@@ -254,7 +256,12 @@ Kontakt:<br/>
 <input name="result_team1" id="result_team1" type="text" size="5" onkeypress='return event.charCode >= 48 && event.charCode <= 57' /> :
 <input name="result_team2" id="result_team2" type="text" size="5" onkeypress='return event.charCode >= 48 && event.charCode <= 57' /> 
 
-<select id="result2"></select>
+<select id="result2"></select></br>
+
+<p>Data rozegrania</p>
+<input name="match_day" id="match_day" type="date" />
+<p>Godzina rozegrania</p>
+<input name="match_time" id="match_time" type="time" />
 <center>
 <input type="button" name="Submit" id="Submit" onclick="postContactToGoogle_Result()" value="Zapisz"/>
 <input type="reset" value="Reset"/>
