@@ -86,6 +86,21 @@ url:"https://docs.google.com/forms/d/e/1FAIpQLSctXMIhib2RJZxWzq4CRqXItkByW1IzpOk
 </script>
 
 <script>
+function postContactToGoogle_News() {
+
+var add_news=$('#add_news').val();
+var news_description=$('#news_description').val();
+
+$.support.cors=true;
+$.ajax({
+url:"https://docs.google.com/forms/d/e/1FAIpQLSddmyP7G-yxwkP84B02XHJxgvMAAkqMi-zlBm5_nSOrWJjGAg/formResponse",data:{"entry_755576590":add_news,"entry_1455691291":news_description},type:"POST",dataType:"xml",statusCode: {0:function() { alert("Nie udało się zapisać danych!");},200:function(){alert("Twoje dane zostały poprawnie zapisane!");}}
+});
+
+}
+   
+</script>
+
+<script>
 
 $(function() {
 $select = $('#result');
@@ -114,13 +129,22 @@ $.getJSON( dmJSON, function(data) {
 });
 </script>
 
+
 <script>
-$('tr').each(function() {
-  if($(this).find('td').length == 0) {
-   $(this).hide();
-  }
+$(function() {
+$select3 = $('#news_header');
+var entries = [];
+var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=News";
+$.getJSON( dmJSON, function(data) {
+   $.each(data.News, function(i, f) {
+      $select3.append('<a href="#" class="list-group-item"><h4 id="' + f.Tytuł + '">' + f.Tytuł + '</h4> </br><p id="' + f.Tytuł + '">' + f.Treść_aktualności + '</p></a>');
+ });
+
+});
+
 });
 </script>
+
 
 
 
@@ -131,6 +155,7 @@ $('tr').each(function() {
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a data-toggle="pill" href="#home" onclick="closeNav()">Aktualności</a>
+  <a data-toggle="pill" href="#news" onclick="closeNav()">Dodawanie aktualności</a>
   <a data-toggle="pill" href="#menu1" onclick="closeNav()">Tabela</a>
   <a data-toggle="pill" href="#menu2" onclick="closeNav()">Dodawanie drużyn</a>
   <a data-toggle="pill" href="#teams" onclick="closeNav()">Drużyny</a>
@@ -140,7 +165,7 @@ $('tr').each(function() {
   <a data-toggle="pill" href="#" onclick="closeNav()">Logowanie</a>
 </div>
 
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Football Ligue</span>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Football-League</span>
 
 
 <div class="container">
@@ -148,21 +173,15 @@ $('tr').each(function() {
   
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
-      <h3> Aktualności</h3>
+      
+	  <h3> Aktualności</h3>
       <div class="list-group">
-    <a href="#" class="list-group-item">
-      <h4 class="list-group-item-heading">Mecz pełen bramecz, czyli Wisła wygrywa z Legią 5:2</h4>
-      <p class="list-group-item-text">Treść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacjiTreść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacjiTreść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacji</p>
+   
+      <h4 id="news_header"></h4>
+      <p id="news_content" class="news_content"></p>
 
-    </a>
-    <a href="#" class="list-group-item">
-      <h4 class="list-group-item-heading">Wygrana na wyjeździe</h4>
-      <p class="list-group-item-text">Treść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacjiTreść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacjiTreść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacji</p>
-    </a>
-    <a href="#" class="list-group-item">
-      <h4 class="list-group-item-heading">Trzecia porażka z rzędu</h4>
-      <p class="list-group-item-text">Treść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacjiTreść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacjiTreść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacji -- Treść informacji</p>
-    </a>
+    
+   
   </div>
     </div>
     <div id="menu1" class="tab-pane fade">
@@ -184,6 +203,24 @@ $('tr').each(function() {
 
    </tbody>
 </table>
+    </div>
+   
+   <div id="news" class="tab-pane fade">
+    <form id="formRequest">
+
+Tytuł:<br/>
+<input type="text" name="add_news" id="add_news" placeholder="Wprowadź tytuł newsa" size="90" /><br/>
+
+Treść newsa:<br/>
+<input type="text" name="news_description" id="news_description" placeholder="Wprowadź treść newsa" size="90" /><br/>
+
+<center>
+<input type="button" name="Submit" id="Submit" onclick="postContactToGoogle_News()" value="Zapisz"/>
+<input type="reset" value="Reset"/>
+</center>
+
+
+</form>
     </div>
    
    <div id="menu2" class="tab-pane fade">
