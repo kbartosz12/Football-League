@@ -15,5 +15,5 @@
 	<allow-intent href="*" />
 	<access origin="*" />
 	<plugin name="cordova-plugin-whitelist" spec="1" />
-	<icon src="img/logo.gif" platform="ios" width="57" height="57" density="mdpi" />
+	<icon src="//img/logo.gif" platform="ios" width="57" height="57" density="mdpi" />
 </widget>
