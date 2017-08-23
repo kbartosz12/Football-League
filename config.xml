@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
-		id          = "FootballLeague"
+		id          = "FootballLigue"
         version     = "1.0.0" >
 
     <name>Football Ligue</name>
-    <description>Local Football League</description>
+    <description>Local Football Ligue</description>
     
 	<platform name="android" />
 	
@@ -15,4 +15,5 @@
 	<allow-intent href="*" />
 	<access origin="*" />
 	<plugin name="cordova-plugin-whitelist" spec="1" />
+	<icon src="img/logo.gif" platform="ios" width="57" height="57" density="mdpi" />
 </widget>
