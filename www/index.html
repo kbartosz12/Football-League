@@ -53,8 +53,12 @@ $(function() {
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Calculations";
 $.getJSON( dmJSON, function(data) {
    $.each(data.Calculations, function(i, f) {
-      var tblRow = "<tr>" + "<td>" + f.APK_Pozycja_w_tabeli + "</td>" + "<td>" + f.APK_Drużyny + "</td>" + "<td>" + f.APK_Liczba_meczów + "</td>" + "<td>" + f.APK_Mecze_wygrane + "</td>" + "<td>" + f.APK_Mecze_przegrane + "</td>"+ "<td>" + f.APK_Mecze_zremisowane + "</td>" + "<td>" + f.APK_Bramki_zdobyte + "</td>" + "<td>" + f.APK_Bramki_stracone + "</td>" + "<td>" + f.APK_Bilans_bramkowy + "</td>" + "<td>" + f.APK_Punkty + "</td>" + "</tr>"
-       $(tblRow).appendTo("#matches_table tbody");
+		if(f.APK_Drużyny =="#N/A" || f.APK_Drużyny == ''){}
+		else
+		{
+		  var tblRow = "<tr>" + "<td>" + f.APK_Pozycja_w_tabeli + "</td>" + "<td>" + f.APK_Drużyny + "</td>" + "<td>" + f.APK_Liczba_meczów + "</td>" + "<td>" + f.APK_Mecze_wygrane + "</td>" + "<td>" + f.APK_Mecze_przegrane + "</td>"+ "<td>" + f.APK_Mecze_zremisowane + "</td>" + "<td>" + f.APK_Bramki_zdobyte + "</td>" + "<td>" + f.APK_Bramki_stracone + "</td>" + "<td>" + f.APK_Bilans_bramkowy + "</td>" + "<td>" + f.APK_Punkty + "</td>" + "</tr>"
+		   $(tblRow).appendTo("#matches_table tbody");
+	   }
  });
 
 });
@@ -110,6 +114,14 @@ $.getJSON( dmJSON, function(data) {
 });
 </script>
 
+<script>
+$('tr').each(function() {
+  if($(this).find('td').length == 0) {
+   $(this).hide();
+  }
+});
+</script>
+
 
 
 
@@ -155,7 +167,7 @@ $.getJSON( dmJSON, function(data) {
     </div>
     <div id="menu1" class="tab-pane fade">
  <h3>Tabela</h3>
-      <table id= "matches_table" border="1">
+      <table id= "matches_table" border="1" style="white-space:nowrap">
 <thead>
         <th>Lp.</th>
         <th>Drużyna</th>
