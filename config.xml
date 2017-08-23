@@ -15,6 +15,7 @@
 	<allow-intent href="*" />
 	<access origin="*" />
 	<plugin name="cordova-plugin-whitelist" spec="1" />
+	 
 	 <platform name="android">
         <icon src="www/logo_icon.png" density="ldpi" />
         <icon src="www/logo_icon.png" density="mdpi" />
@@ -35,4 +36,7 @@
         <splash src="www/logo_icon.png" density="port-xxhdpi"/>
         <splash src="www/logo_icon.png" density="port-xxxhdpi"/>
     </platform>
+	
+	<gap:splash src="www/logo_icon.png" />
+
 </widget>
