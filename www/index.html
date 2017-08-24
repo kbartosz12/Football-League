@@ -15,6 +15,9 @@
 	</head>
 <body>
 
+
+
+
 <script>
 function postContactToGoogle() {
 var teamname=$('#teamname').val();
@@ -37,8 +40,13 @@ var entries = [];
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Teams";
 $.getJSON( dmJSON, function(data) {
    $.each(data.Teams, function(i, f) {
+   
+   if(f.Nazwa_drużyny =="#N/A" || f.Nazwa_drużyny == ''){}
+		else
+		{
       var tblRow = "<tr>" + "<td>" + f.Nazwa_drużyny + "</td>" + "<td>" + f.Lokalizacja + "</td>" + "<td>" + f.Zawodnicy + "</td>" + "<td>" + f.Trener + "<td>" + f.Kontakt + "</td>" + "</td>"+ "</tr>"
        $(tblRow).appendTo("#entrydata tbody");
+	   }
  });
 
 });
@@ -137,7 +145,7 @@ var entries = [];
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=News";
 $.getJSON( dmJSON, function(data) {
    $.each(data.News, function(i, f) {
-      $select3.append('<a href="#" class="list-group-item"><h4 id="' + f.Tytuł + '">' + f.Tytuł + '</h4> </br><p id="' + f.Tytuł + '">' + f.Treść_aktualności + '</p></a>');
+      $select3.prepend('<a href="#" class="list-group-item"><h4 id="' + f.Tytuł + '">' + f.Tytuł + '</h4> </br><p id="' + f.Tytuł + '">' + f.Treść_aktualności + '</p></a>');
  });
 
 });
@@ -146,24 +154,77 @@ $.getJSON( dmJSON, function(data) {
 </script>
 
 
+<script>
+$(function() {
 
 
+var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Calculations";
+$.getJSON( dmJSON, function(data) {
+   $.each(data.Calculations, function(i, f) {
+		if(f.Nazwa_drużyny_1 =="#N/A" || f.Nazwa_drużyny_1 == '' || f.Nazwa_drużyny_2 =="#N/A" || f.Nazwa_drużyny_2 == ''){}
+		else
+		{
+		  var tblRow = "<tr>" + "<td><b>" +  f.Nazwa_drużyny_1 + "</b></td>" + "<td>" + f.Liczba_bramek_drużyny_1 + "</td>" + "<td>" + f.Liczba_bramek_drużyny_1 + "</td>" + "<td><b>" + f.Nazwa_drużyny_2 + "</b></td>" + "<td>" + f.Data + ' ' + f.Godzina + "</td>"  + "</tr>"
+		   $(tblRow).appendTo("#result_table tbody");
+	   }
+ });
+
+});
+
+});
+</script>
+
+<script>
+function postContactToGoogle_Timetable() {
+
+var timetable_team1=$('#result').val();
+var timetable_team2=$('#result2').val();
+var timetable_date=$('#timetable_date').val();
+var timetable_hour=$('#timetable_hour').val();
+var timetable_place=$('#timetable_place').val();
+
+$.support.cors=true;
+$.ajax({
+url:"https://docs.google.com/forms/d/e/1FAIpQLSdsrfpC-_-FePzmDGXzqyxwwQG_8YJ0Ol5NA8lPRRRkUf4mLw/formResponse",data:{"entry_180032544":timetable_team1,"entry_608089753":timetable_team2,"entry_1112198098":timetable_date,"entry_1496049942":timetable_hour,"entry_1289471781":timetable_place},type:"POST",dataType:"xml",statusCode: {0:function() { alert("Nie udało się zapisać danych!");},200:function(){alert("Twoje dane zostały poprawnie zapisane!");}}
+});
+
+}
+   
+</script>
+
+<script>
+$(function() {
 
 
+var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Timetable";
+$.getJSON( dmJSON, function(data) {
+   $.each(data.Timetable, function(i, f) {
+		if(f.Drużyna_1 =="#N/A" || f.Drużyna_1 == '' || f.Drużyna_2 =="#N/A" || f.Drużyna_2 == ''){}
+		else
+		{
+		  var tblRow = "<tr>" + "<td><b>" +  f.Drużyna_1 + " - " + f.Drużyna_2 + "</b></td>" + "<td>" + f.Data + ' ' + f.Godzina  + "</td>" + "<td>" + f.Miejsce + "</td>" + "</tr>"
+		   $(tblRow).appendTo("#timetable_list tbody");
+	   }
+ });
+
+});
+
+});
+</script>
 
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a data-toggle="pill" href="#home" onclick="closeNav()">Aktualności</a>
-  <a data-toggle="pill" href="#news" onclick="closeNav()">Dodawanie aktualności</a>
-  <a data-toggle="pill" href="#menu1" onclick="closeNav()">Tabela</a>
-  <a data-toggle="pill" href="#menu2" onclick="closeNav()">Dodawanie drużyn</a>
   <a data-toggle="pill" href="#teams" onclick="closeNav()">Drużyny</a>
-  <a data-toggle="pill" href="#results" onclick="closeNav()">Dodawanie wyników</a>
-  <a data-toggle="pill" href="#menu3" onclick="closeNav()">Terminarz</a>
-  <a data-toggle="pill" href="#" onclick="closeNav()">Statystyki</a>
-  <a data-toggle="pill" href="#" onclick="closeNav()">Logowanie</a>
+  <a data-toggle="pill" href="#result_list" onclick="closeNav()">Wyniki</a>
+  <a data-toggle="pill" href="#table" onclick="closeNav()">Tabela</a>
+  <a data-toggle="pill" href="#timetable_list" onclick="closeNav()">Terminarz</a>
+  <a data-toggle="pill" href="#login" onclick="closeNav()">Logowanie</a>
+  
 </div>
+
+
 
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Football-League</span>
 
@@ -184,7 +245,7 @@ $.getJSON( dmJSON, function(data) {
    
   </div>
     </div>
-    <div id="menu1" class="tab-pane fade">
+    <div id="table" class="tab-pane fade">
  <h3>Tabela</h3>
       <table id= "matches_table" border="1" style="white-space:nowrap">
 <thead>
@@ -223,7 +284,7 @@ Treść newsa:<br/>
 </form>
     </div>
    
-   <div id="menu2" class="tab-pane fade">
+   <div id="add_teams" class="tab-pane fade">
     <form id="formRequest">
 
 Nazwa drużyny:<br/>
@@ -249,9 +310,43 @@ Kontakt:<br/>
 
 </form>
     </div>
-    <div id="menu3" class="tab-pane fade">
-      <h3>Menu 3</h3>
-      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    <div id="timetable" class="tab-pane fade">
+      <h3>Dodawanie terminarza</h3>
+      <form id="formRequest2">
+ 
+ 
+ <select id="result"></select> -
+<select id="result2"></select></br>
+<p>Data meczu</p>
+<input name="timetable_date" id="timetable_date" type="date" />
+<p>Godzina meczu</p>
+<input name="timetable_hour" id="timetable_hour" type="time" />
+<p>Miejsce meczu</p>
+<input name="timetable_place" id="timetable_place" type="text" />
+<center>
+<input type="button" name="Submit" id="Submit" onclick="postContactToGoogle_Timetable()" value="Zapisz"/>
+<input type="reset" value="Reset"/>
+</center>
+
+
+</form>
+    </div>
+	
+	<div id="login" class="tab-pane fade">
+      <h3>Logowanie administratora</h3>
+      <input type="text" name="username" id="username" class="text" maxlength="30" />
+<br />
+<input type="password" name="password" id="password" class="text" maxlength="30" />
+<br />
+<input type="submit" name="btnSubmit" id="btnSubmit" /></br>
+
+
+ <a data-toggle="pill" href="#news">Dodawanie aktualności</a></br>
+ <a data-toggle="pill" href="#add_teams">Dodawanie drużyn</a></br>
+ <a data-toggle="pill" href="#results">Dodawanie wyników</a></br>
+ <a data-toggle="pill" href="#timetable">Dodawanie terminarza</a></br>
+
+
     </div>
 	
 	
@@ -271,9 +366,40 @@ Kontakt:<br/>
 </table>
     </div>
 	
+	<div id="result_list" class="tab-pane fade">
+      <h3>Wyniki meczów</h3>
+      <table id= "result_table" border="1">
+<thead>
+        <th>Drużyna</th>
+        <th colspan = "2" >Bramki</th>
+        <th>Drużyna</th>
+		<th>Data</th>
+    </thead>
+  <tbody>
+
+   </tbody>
+</table>
+    </div>
+	
+	
+	<div id="timetable_list" class="tab-pane fade">
+      <h3>Terminarz</h3>
+      <table id= "timetable_list" border="1">
+<thead>
+        <th>Drużyny</th>
+        <th>Data</th>
+		<th>Miejsce</th>
+		<th>Prognoza pogody</th>
+    </thead>
+  <tbody>
+
+   </tbody>
+</table>
+    </div>
+	
 	
 	<div id="results" class="tab-pane fade">
-      <h3>Dodaj wynik meczu</h3>
+      <h3>Dodawanie wyniku meczu</h3>
 	  <form id="formRequest2">
  
  
@@ -295,8 +421,13 @@ Kontakt:<br/>
 
 
 </form>
+
    
     </div>
+	
+	
+	
+	
   </div>
 </div>
   </div>
