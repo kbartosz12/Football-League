@@ -202,7 +202,7 @@ $.getJSON( dmJSON, function(data) {
 		if(f.Drużyna_1 =="#N/A" || f.Drużyna_1 == '' || f.Drużyna_2 =="#N/A" || f.Drużyna_2 == ''){}
 		else
 		{
-		  var tblRow = "<tr>" + "<td><b>" +  f.Drużyna_1 + " - " + f.Drużyna_2 + "</b></td>" + "<td>" + f.Data + ' ' + f.Godzina  + "</td>" + "<td>" + f.Miejsce + "</td>" + "</tr>"
+		  var tblRow = "<tr>" + "<td><b>" +  f.Drużyna_1 + " - " + f.Drużyna_2 + "</b></td>" + "<td>" + f.Data + ' ' + f.Godzina  + "</td>" + "<td>" + '<a href="http://maps.google.com/?q=' + f.Miejsce + '">' + f.Miejsce + "</a></td>" + "</tr>"
 		   $(tblRow).appendTo("#timetable_list tbody");
 	   }
  });
@@ -211,6 +211,8 @@ $.getJSON( dmJSON, function(data) {
 
 });
 </script>
+
+
 
 
 <div id="mySidenav" class="sidenav">
@@ -241,7 +243,7 @@ $.getJSON( dmJSON, function(data) {
       <h4 id="news_header"></h4>
       <p id="news_content" class="news_content"></p>
 
-    
+  
    
   </div>
     </div>
