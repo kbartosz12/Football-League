@@ -44,7 +44,7 @@ $.getJSON( dmJSON, function(data) {
    if(f.Nazwa_drużyny =="#N/A" || f.Nazwa_drużyny == ''){}
 		else
 		{
-      var tblRow = "<tr>" + "<td>" + f.Nazwa_drużyny + "</td>" + "<td>" + '<a href="http://maps.google.com/?q=' + f.Lokalizacja  + '">'  + f.Lokalizacja + "</a></td>" + "<td>" + f.Zawodnicy + "</td>" + "<td>" + f.Trener + "<td>" + f.Kontakt + "</td>" + "</td>"+ "</tr>"
+      var tblRow = "<tr>" +  "<td>" + f.Nazwa_drużyny + "</td>" + "<td>" + '<a href="http://maps.google.com/?q=' + f.Lokalizacja  + '">'  + f.Lokalizacja + "</a></td>" + "<td>" + f.Zawodnicy + "</td>" + "<td>" + f.Trener + "<td>" + f.Kontakt + "</td>" + "</td>"+  "</tr>"
        $(tblRow).appendTo("#entrydata tbody");
 	   }
  });
@@ -105,6 +105,7 @@ $.getJSON( dmJSON, function(data) {
 	'<a data-toggle="pill" href="#add_teams">Dodawanie drużyn</a></br>'+
 	'<a data-toggle="pill" href="#results">Dodawanie wyników</a></br>'+
 	'<a data-toggle="pill" href="#timetable">Dodawanie terminarza</a></br>';
+	alert("Zostałeś poprawnie zalogowany!");
    IsAdmin = true;
    console.log('dd');
    console.log(f.Login);
@@ -113,6 +114,7 @@ $.getJSON( dmJSON, function(data) {
    
    else
    {
+   alert("Wprowadzony login lub hało nie są poprawne!");
    IsAdmin = false;
    console.log('else');
    }
@@ -153,7 +155,7 @@ function HideAdminPanel()
 {
 
 document.getElementById("login2").innerHTML ='';
-
+alert("Zostałeś poprawnie wylogowany!");
 }
 
 
@@ -249,8 +251,8 @@ $.getJSON( dmJSON, function(data) {
 <script>
 function postContactToGoogle_Result() {
 
-var teamname1=$('#result').val();
-var teamname2=$('#result2').val();
+var teamname1=$('#result3').val();
+var teamname2=$('#result4').val();
 var result_team1=$('#result_team1').val();
 var result_team2=$('#result_team2').val();
 var match_day=$('#match_day').val();
@@ -296,6 +298,35 @@ $.getJSON( dmJSON, function(data) {
 
 $(function() {
 $select2 = $('#result2');
+var entries = [];
+var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Teams";
+$.getJSON( dmJSON, function(data) {
+   $.each(data.Teams, function(i, f) {
+      $select2.append('<option id="' + f.Nazwa_drużyny + '">' + f.Nazwa_drużyny + '</option>');
+ });
+
+});
+
+});
+</script>
+
+<script>
+
+$(function() {
+$select = $('#result3');
+var entries = [];
+var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Teams";
+$.getJSON( dmJSON, function(data) {
+   $.each(data.Teams, function(i, f) {
+      $select.append('<option id="' + f.Nazwa_drużyny + '">' + f.Nazwa_drużyny + '</option>');
+ });
+
+});
+
+});
+
+$(function() {
+$select2 = $('#result4');
 var entries = [];
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Teams";
 $.getJSON( dmJSON, function(data) {
@@ -388,6 +419,9 @@ $.getJSON( dmJSON, function(data) {
 
 
 
+
+
+
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a data-toggle="pill" href="#home" onclick="closeNav()">Aktualności</a>
@@ -396,6 +430,7 @@ $.getJSON( dmJSON, function(data) {
   <a data-toggle="pill" href="#table" onclick="closeNav()">Tabela</a>
   <a data-toggle="pill" href="#timetable_list" onclick="closeNav()">Terminarz</a>
   <a data-toggle="pill" href="#login" onclick="closeNav()">Logowanie</a>
+  <a data-toggle="pill" href="#settings" onclick="closeNav()">Ustawienia</a>
   
 </div>
 
@@ -403,6 +438,14 @@ $.getJSON( dmJSON, function(data) {
 
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Football-League</span>
 
+<div id="write" align="right"></div>
+<script>
+if (window.localStorage.getItem("database") == null) {
+        document.getElementById('write').innerHTML = "";
+    } else {
+        document.getElementById('write').innerHTML = "Witaj " + window.localStorage.getItem("database") + ",<br>sprawdź najnowsze informacje na temat rozgrywek";
+    }
+</script>
 
 <div class="container">
  
@@ -533,6 +576,7 @@ Kontakt:<br/>
         <th>Zawodnicy</th>
 		<th>Trener</th>
 		<th>Kontakt</th>
+		
     </thead>
   <tbody>
 
@@ -573,16 +617,18 @@ Kontakt:<br/>
 	
 	
 	<div id="results" class="tab-pane fade">
-      <h3>Dodawanie wyniku meczu</h3>
+      
+	  <h3>Dodawanie wyniku meczu</h3>
+	  
 	  <form id="formRequest2">
  
  
- <select id="result"></select> 
+ <select id="result3"></select> 
  
 <input name="result_team1" id="result_team1" type="text" size="5" onkeypress='return event.charCode >= 48 && event.charCode <= 57' /> :
 <input name="result_team2" id="result_team2" type="text" size="5" onkeypress='return event.charCode >= 48 && event.charCode <= 57' /> 
 
-<select id="result2"></select></br>
+<select id="result4"></select></br>
 
 <p>Data rozegrania</p>
 <input name="match_day" id="match_day" type="date" />
@@ -600,6 +646,57 @@ Kontakt:<br/>
     </div>
 	
 	
+	
+	
+	<div id="settings" class="tab-pane fade">
+      
+	  <h3>Informacje o użytkowniku</h3>
+	  <input type="text" placeholder="Wpisz swoje imię" id="inputString" />
+
+<button type="button" onclick="saveStatusLocally()">Zapisz</button>
+
+
+
+<script>
+
+var stores = Array();
+
+var inputField = document.getElementById('inputString');
+
+function saveStatusLocally() {
+
+    var stringToSave = inputField.value;
+    if ((stringToSave == null) || (stringToSave == "")) {
+        document.getElementById('write').innerHTML = "";
+    } else {
+
+	stores.push(stringToSave);
+
+        inputField.value = "";
+
+        window.localStorage.setItem("database", stores.join(" "));
+
+        document.getElementById('write').innerHTML = "data stored.";
+
+        setTimeout(function() {
+            document.getElementById('write').innerHTML = "";
+        }, 1000);
+
+    }
+}
+
+
+
+</script>
+	  
+
+
+</form>
+
+   
+    </div>
+	
+		
 	
 	
   </div>
