@@ -93,7 +93,7 @@ $.getJSON( dmJSON, function(data) {
 
 function DisplayAdminPanel()
 {
-var IsAdmin;
+var IsAdmin=false;
 var username=$('#username').val();
 var userpass=$('#password').val();
 
@@ -103,18 +103,21 @@ $.getJSON( dmJSON, function(data) {
   
   if (username==f.Login && f.Login!='' && userpass==f.Password)
    {
-   document.getElementById("login2").innerHTML ='<a data-toggle="pill" href="#news">Dodawanie aktualności</a></br>' + 
-	'<a data-toggle="pill" href="#add_teams">Dodawanie drużyn</a></br>'+
-	'<a data-toggle="pill" href="#results">Dodawanie wyników</a></br>'+
-	'<a data-toggle="pill" href="#timetable">Dodawanie terminarza</a></br>';
+   document.getElementById("login2").innerHTML =
+   '<a data-toggle="pill" href="#news" class="list-group-item list-group-item-action">Dodawanie aktualności</a>'+
+   '<a data-toggle="pill" href="#add_teams" class="list-group-item list-group-item-action">Dodawanie drużyn</a>'+
+   '<a data-toggle="pill" href="#results" class="list-group-item list-group-item-action">Dodawanie wyników</a>'+
+   '<a data-toggle="pill" href="#timetable" class="list-group-item list-group-item-action">Dodawanie terminarza</a>';
+   
+   
 	alert("Zostałeś poprawnie zalogowany!");
    IsAdmin = true;
-   console.log('dd');
-   console.log(f.Login);
-   console.log(IsAdmin);
+   //console.log('dd');
+   //console.log(f.Login);
+   //console.log(IsAdmin);
    }
    
-   else
+   else if (IsAdmin==false)
    {
    alert("Wprowadzony login lub hało nie są poprawne!");
    IsAdmin = false;
@@ -158,6 +161,11 @@ function HideAdminPanel()
 
 document.getElementById("login2").innerHTML ='';
 alert("Zostałeś poprawnie wylogowany!");
+$('#username').click(function() {
+    this.value = '';
+});
+   
+
 }
 
 
@@ -422,8 +430,6 @@ $.getJSON( dmJSON, function(data) {
 
 
 
-
-
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a data-toggle="pill" href="#home" onclick="closeNav()">Aktualności</a>
@@ -555,12 +561,12 @@ Kontakt:<br/>
 	<div id="login" class="tab-pane fade">
       <h3>Logowanie administratora</h3>
 	  
-      <input type="text" name="username" id="username" class="text" maxlength="30" />
+      <input type="text" name="username" id="username" class="form-control"  maxlength="30" />
 <br />
-<input type="password" name="password" id="password" class="text" maxlength="30" />
+<input type="password" name="password" id="password" class="form-control" maxlength="30" />
 <br />
-<input value="Zaloguj" type="button" name="btnLogin" id="btnLogin" onclick="DisplayAdminPanel()" /></br>
-<input value="Wyloguj" type="button" name="btnLogOut" id="btnLogOut" onclick="HideAdminPanel()" /></br>
+<input value="Zaloguj" type="button" name="btnLogin" id="btnLogin" class="btn btn-primary" onclick="DisplayAdminPanel()" /> 
+<input value="Wyloguj" type="button" name="btnLogOut" id="btnLogOut" class="btn btn-primary" onclick="HideAdminPanel()" /></br>
 
 <div id="login2">
 
