@@ -15,7 +15,8 @@
 
 		
 	</head>
-<body>
+<body style="max-width: 100% 
+    overflow-x: hidden">
 
 
 
@@ -594,9 +595,9 @@ Kontakt:<br/>
 	<div id="login" class="tab-pane fade">
       <h3>Logowanie administratora</h3>
 	  <hr style="border-width: 2px 2px 0; border-style: solid; border-color: palevioletred; width: 100%; margin-left: auto; margin-right: auto;">
-      <input type="text" name="username" id="username" class="form-control"  maxlength="30" />
+      <input type="text" name="username" id="username" class="form-control"  placeholder="login" maxlength="30" />
 <br />
-<input type="password" name="password" id="password" class="form-control" maxlength="30" />
+<input type="password" name="password" id="password" class="form-control" placeholder="hasło" maxlength="30" />
 <br />
 <input value="Zaloguj" type="button" name="btnLogin" id="btnLogin" class="btn btn-primary" onclick="DisplayAdminPanel()" /> 
 <input value="Wyloguj" type="button" name="btnLogOut" id="btnLogOut" class="btn btn-primary" onclick="HideAdminPanel()" /></br>
