@@ -15,8 +15,7 @@
 
 		
 	</head>
-<body style="max-width: 100% 
-    overflow-x: hidden">
+<body>
 
 
 
@@ -527,10 +526,10 @@ if (window.localStorage.getItem("database") == null) {
     <form id="formRequest">
 
 Tytuł:<br/>
-<input type="text" name="add_news" id="add_news" placeholder="Wprowadź tytuł newsa" size="90" /><br/>
+<input type="text" name="add_news" id="add_news" class="form-control" placeholder="Wprowadź tytuł newsa" size="90" /><br/>
 
 Treść newsa:<br/>
-<input type="text" name="news_description" id="news_description" placeholder="Wprowadź treść newsa" size="90" /><br/>
+<input type="text" name="news_description" id="news_description" class="form-control" placeholder="Wprowadź treść newsa" size="90" /><br/>
 
 <center>
 <input type="button" class="btn btn-primary" name="Submit" id="Submit" onclick="postContactToGoogle_News()" value="Zapisz"/>
@@ -547,19 +546,19 @@ Treść newsa:<br/>
     <form id="formRequest">
 
 Nazwa drużyny:<br/>
-<input type="text" name="teamname" id="teamname" placeholder="Wprowadź nazwę drużyny" size="90" /><br/>
+<input type="text" name="teamname" id="teamname" class="form-control" placeholder="Wprowadź nazwę drużyny" size="90" /><br/>
 
 Lokalizacja:<br/>
-<input type="text" name="localization" id="localization" placeholder="Wprowadź lokalizację boiska w formacie ulica, miasto np. Sportowa 5, Kraków" size="90"/><br/>
+<input type="text" name="localization" id="localization" class="form-control" placeholder="Wprowadź lokalizację boiska (ulica,miasto)" size="50"/><br/>
 
 Zawodnicy:<br/>
-<input type="text" name="players" id="players" placeholder="Wprowadź zawodników oddzielając imiona i nazwiska przecinkami np. Jan Nowak, Grzegorz Kowalski..."  size="90"/><br/>
+<input type="text" name="players" id="players" class="form-control" placeholder="Wprowadź zawodników oddzielając imiona i nazwiska przecinkami"  size="50"/><br/>
 
 Trener:<br/>
-<input type="text" name="coach" id="coach" placeholder="Wprowadź imię i nazwisko trenera" size="90" /><br/>
+<input type="text" name="coach" id="coach" class="form-control" placeholder="Wprowadź imię i nazwisko trenera" size="90" /><br/>
 
 Kontakt:<br/>
-<input type="text" name="contact" id="contact" placeholder="Wprowadź dodatkowy kontakt np. telefon kontaktowy" size="90" /><br/>
+<input type="text" name="contact" id="contact" class="form-control" placeholder="Wprowadź dodatkowy kontakt np. telefon kontaktowy" size="90" /><br/>
 
 <center>
 <input type="button" name="Submit" id="Submit" class="btn btn-primary" onclick="postContactToGoogle()" value="Zapisz"/>
@@ -575,14 +574,14 @@ Kontakt:<br/>
       <form id="formRequest2">
  
  
- <select id="result"></select> -
-<select id="result2"></select></br>
+ <select class="form-control" id="result"></select> -
+<select class="form-control" id="result2"></select></br>
 <p>Data meczu</p>
-<input name="timetable_date" id="timetable_date" type="date" />
+<input name="timetable_date" id="timetable_date" class="form-control" type="date" />
 <p>Godzina meczu</p>
-<input name="timetable_hour" id="timetable_hour" type="time" />
+<input name="timetable_hour" id="timetable_hour" class="form-control" type="time" />
 <p>Miejsce meczu</p>
-<input name="timetable_place" id="timetable_place" type="text" />
+<input name="timetable_place" id="timetable_place" class="form-control" type="text" />
 <center>
 <input type="button" name="Submit" id="Submit" class="btn btn-primary" onclick="postContactToGoogle_Timetable()" value="Zapisz"/>
 <input type="reset" class="btn btn-primary" value="Reset"/>
@@ -668,17 +667,17 @@ Kontakt:<br/>
 	  <form id="formRequest2">
  
  
- <select id="result3"></select> 
+ <select class="form-control" id="result3"></select> 
  
-<input name="result_team1" id="result_team1" type="text" size="5" onkeypress='return event.charCode >= 48 && event.charCode <= 57' /> :
-<input name="result_team2" id="result_team2" type="text" size="5" onkeypress='return event.charCode >= 48 && event.charCode <= 57' /> 
+<input name="result_team1" id="result_team1" type="text" class="form-control" size="5" onkeypress='return event.charCode >= 48 && event.charCode <= 57' /> :
+<input name="result_team2" id="result_team2" type="text" class="form-control" size="5" onkeypress='return event.charCode >= 48 && event.charCode <= 57' /> 
 
-<select id="result4"></select></br>
+<select class="form-control" id="result4"></select></br>
 
 <p>Data rozegrania</p>
-<input name="match_day" id="match_day" type="date" />
+<input name="match_day" id="match_day" class="form-control" type="date" />
 <p>Godzina rozegrania</p>
-<input name="match_time" id="match_time" type="time" />
+<input name="match_time" id="match_time" class="form-control" type="time" />
 <center>
 <input type="button" name="Submit" id="Submit" class="btn btn-primary" onclick="postContactToGoogle_Result()" value="Zapisz"/>
 <input type="reset" class="btn btn-primary" value="Reset"/>
@@ -697,7 +696,7 @@ Kontakt:<br/>
       
 	  <h3>Informacje o użytkowniku</h3>
 	  <hr style="border-width: 2px 2px 0; border-style: solid; border-color: palevioletred; width: 100%; margin-left: auto; margin-right: auto;">
-	  <input type="text" placeholder="Wpisz swoje imię" id="inputString" />
+	  <input type="text" placeholder="Wpisz swoje imię" class="form-control" id="inputString" />
 
 <button type="button" class="btn btn-primary" onclick="saveStatusLocally()">Zapisz</button>
 
