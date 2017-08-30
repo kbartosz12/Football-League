@@ -41,6 +41,7 @@ $(function() {
 var entries = [];
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Teams";
 $.getJSON( dmJSON, function(data) {
+$('#loader').html(data);
    $.each(data.Teams, function(i, f) {
    
    if(f.Nazwa_drużyny =="#N/A" || f.Nazwa_drużyny == ''){}
@@ -66,6 +67,7 @@ var username=$('#username').val();
 //var IsAdmin=false;
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Admins";
 $.getJSON( dmJSON, function(data) {
+$('#loader').html(data);
    $.each(data.Admins, function(i, f) {
    
    
@@ -99,13 +101,14 @@ var userpass=$('#password').val();
 
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Admins";
 $.getJSON( dmJSON, function(data) {
+$('#loader').html(data);
    $.each(data.Admins, function(i, f) {
   
   if (username==f.Login && f.Login!='' && userpass==f.Password)
    {
    document.getElementById("login2").innerHTML =
    '<a data-toggle="pill" href="#news" class="list-group-item list-group-item-action">Dodawanie aktualności</a>'+
-   '<a data-toggle="pill" href="#add_teams" class="list-group-item list-group-item-action">Dodawanie drużyn</a>'+
+   '<a data-toggle="pill" href="#add_teams" class="list-group-item list-group-item-action">Dodawanie drużyny</a>'+
    '<a data-toggle="pill" href="#results" class="list-group-item list-group-item-action">Dodawanie wyników</a>'+
    '<a data-toggle="pill" href="#timetable" class="list-group-item list-group-item-action">Dodawanie terminarza</a>';
    
@@ -161,10 +164,6 @@ function HideAdminPanel()
 
 document.getElementById("login2").innerHTML ='';
 alert("Zostałeś poprawnie wylogowany!");
-$('#username').click(function() {
-    this.value = '';
-});
-   
 
 }
 
@@ -243,6 +242,7 @@ $(function() {
 
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Calculations";
 $.getJSON( dmJSON, function(data) {
+$('#loader').html(data);
    $.each(data.Calculations, function(i, f) {
 		if(f.APK_Drużyny =="#N/A" || f.APK_Drużyny == ''){}
 		else
@@ -298,6 +298,7 @@ $select = $('#result');
 var entries = [];
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Teams";
 $.getJSON( dmJSON, function(data) {
+$('#loader').html(data);
    $.each(data.Teams, function(i, f) {
       $select.append('<option id="' + f.Nazwa_drużyny + '">' + f.Nazwa_drużyny + '</option>');
  });
@@ -311,6 +312,7 @@ $select2 = $('#result2');
 var entries = [];
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Teams";
 $.getJSON( dmJSON, function(data) {
+$('#loader').html(data);
    $.each(data.Teams, function(i, f) {
       $select2.append('<option id="' + f.Nazwa_drużyny + '">' + f.Nazwa_drużyny + '</option>');
  });
@@ -327,6 +329,8 @@ $select = $('#result3');
 var entries = [];
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Teams";
 $.getJSON( dmJSON, function(data) {
+
+$('#loader').html(data);
    $.each(data.Teams, function(i, f) {
       $select.append('<option id="' + f.Nazwa_drużyny + '">' + f.Nazwa_drużyny + '</option>');
  });
@@ -340,6 +344,7 @@ $select2 = $('#result4');
 var entries = [];
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Teams";
 $.getJSON( dmJSON, function(data) {
+$('#loader').html(data);
    $.each(data.Teams, function(i, f) {
       $select2.append('<option id="' + f.Nazwa_drużyny + '">' + f.Nazwa_drużyny + '</option>');
  });
@@ -352,14 +357,17 @@ $.getJSON( dmJSON, function(data) {
 
 <script>
 $(function() {
+
+
 $select3 = $('#news_header');
 var entries = [];
 
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=News";
 
 $.getJSON( dmJSON, function(data) {
+$('#loader').html(data);
    $.each(data.News, function(i, f) {
-      $select3.prepend('<h4 id="' + f.Tytuł + '">' + f.Tytuł + '</h4> </br><h6 id="' + f.Tytuł + '">' + f.Treść_aktualności + '</h6></br></br>');
+      $select3.prepend('<div class="card-header-blue">  <h4 class="card-heading" id="' + f.Tytuł + '">' + f.Tytuł + '</h4></div> </br><div class="card-body"><p class="card-p" id="' + f.Tytuł + '">' + f.Treść_aktualności + '</p></div></br></br>');
  });
 
 });
@@ -374,6 +382,7 @@ $(function() {
 
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Calculations";
 $.getJSON( dmJSON, function(data) {
+$('#loader').html(data);
    $.each(data.Calculations, function(i, f) {
 		if(f.Nazwa_drużyny_1 =="#N/A" || f.Nazwa_drużyny_1 == '' || f.Nazwa_drużyny_2 =="#N/A" || f.Nazwa_drużyny_2 == ''){}
 		else
@@ -412,6 +421,7 @@ $(function() {
 
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Timetable";
 $.getJSON( dmJSON, function(data) {
+$('#loader').html(data);
    $.each(data.Timetable, function(i, f) {
 		if(f.Drużyna_1 =="#N/A" || f.Drużyna_1 == '' || f.Drużyna_2 =="#N/A" || f.Drużyna_2 == ''){}
 		else
@@ -462,7 +472,24 @@ if (window.localStorage.getItem("database") == null) {
     <div id="home" class="tab-pane fade in active">
       
 	  <h3> Aktualności</h3>
+	  <hr style="border-width: 2px 2px 0; border-style: solid; border-color: palevioletred; width: 100%; margin-left: auto; margin-right: auto;">
       <div class="list-group">
+   
+   <div class="container2">
+	<div class="row">
+		<div id="loader">
+    		<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="lading"></div>
+		</div>
+	</div>
+</div>
    
       <h4 id="news_header"></h4>
       <p id="news_content" class="news_content"></p>
@@ -473,6 +500,7 @@ if (window.localStorage.getItem("database") == null) {
     </div>
     <div id="table" class="tab-pane fade">
  <h3>Tabela</h3>
+ <hr style="border-width: 2px 2px 0; border-style: solid; border-color: palevioletred; width: 100%; margin-left: auto; margin-right: auto;">
       <table id= "matches_table" border="1" class="table table-hover">
 <thead>
         <th>Lp.</th>
@@ -493,6 +521,8 @@ if (window.localStorage.getItem("database") == null) {
     </div>
    
    <div id="news" class="tab-pane fade">
+    <h3>Dodawanie newsa</h3>
+	  <hr style="border-width: 2px 2px 0; border-style: solid; border-color: palevioletred; width: 100%; margin-left: auto; margin-right: auto;">
     <form id="formRequest">
 
 Tytuł:<br/>
@@ -502,8 +532,8 @@ Treść newsa:<br/>
 <input type="text" name="news_description" id="news_description" placeholder="Wprowadź treść newsa" size="90" /><br/>
 
 <center>
-<input type="button" name="Submit" id="Submit" onclick="postContactToGoogle_News()" value="Zapisz"/>
-<input type="reset" value="Reset"/>
+<input type="button" class="btn btn-primary" name="Submit" id="Submit" onclick="postContactToGoogle_News()" value="Zapisz"/>
+<input type="reset" class="btn btn-primary" value="Reset"/>
 </center>
 
 
@@ -511,6 +541,8 @@ Treść newsa:<br/>
     </div>
    
    <div id="add_teams" class="tab-pane fade">
+     <h3>Dodawanie drużyny</h3>
+	  <hr style="border-width: 2px 2px 0; border-style: solid; border-color: palevioletred; width: 100%; margin-left: auto; margin-right: auto;">
     <form id="formRequest">
 
 Nazwa drużyny:<br/>
@@ -529,8 +561,8 @@ Kontakt:<br/>
 <input type="text" name="contact" id="contact" placeholder="Wprowadź dodatkowy kontakt np. telefon kontaktowy" size="90" /><br/>
 
 <center>
-<input type="button" name="Submit" id="Submit" onclick="postContactToGoogle()" value="Zapisz"/>
-<input type="reset" value="Reset"/>
+<input type="button" name="Submit" id="Submit" class="btn btn-primary" onclick="postContactToGoogle()" value="Zapisz"/>
+<input type="reset" class="btn btn-primary" value="Reset"/>
 </center>
 
 
@@ -538,6 +570,7 @@ Kontakt:<br/>
     </div>
     <div id="timetable" class="tab-pane fade">
       <h3>Dodawanie terminarza</h3>
+	  <hr style="border-width: 2px 2px 0; border-style: solid; border-color: palevioletred; width: 100%; margin-left: auto; margin-right: auto;">
       <form id="formRequest2">
  
  
@@ -550,8 +583,8 @@ Kontakt:<br/>
 <p>Miejsce meczu</p>
 <input name="timetable_place" id="timetable_place" type="text" />
 <center>
-<input type="button" name="Submit" id="Submit" onclick="postContactToGoogle_Timetable()" value="Zapisz"/>
-<input type="reset" value="Reset"/>
+<input type="button" name="Submit" id="Submit" class="btn btn-primary" onclick="postContactToGoogle_Timetable()" value="Zapisz"/>
+<input type="reset" class="btn btn-primary" value="Reset"/>
 </center>
 
 
@@ -560,7 +593,7 @@ Kontakt:<br/>
 	
 	<div id="login" class="tab-pane fade">
       <h3>Logowanie administratora</h3>
-	  
+	  <hr style="border-width: 2px 2px 0; border-style: solid; border-color: palevioletred; width: 100%; margin-left: auto; margin-right: auto;">
       <input type="text" name="username" id="username" class="form-control"  maxlength="30" />
 <br />
 <input type="password" name="password" id="password" class="form-control" maxlength="30" />
@@ -577,6 +610,7 @@ Kontakt:<br/>
 	
 	<div id="teams" class="tab-pane fade">
       <h3>Drużyny</h3>
+	  <hr style="border-width: 2px 2px 0; border-style: solid; border-color: palevioletred; width: 100%; margin-left: auto; margin-right: auto;">
       <table id= "entrydata" border="1" class="table table-hover">
 <thead>
         <th>Nazwa drużyny</th>
@@ -594,6 +628,7 @@ Kontakt:<br/>
 	
 	<div id="result_list" class="tab-pane fade">
       <h3>Wyniki meczów</h3>
+	  <hr style="border-width: 2px 2px 0; border-style: solid; border-color: palevioletred; width: 100%; margin-left: auto; margin-right: auto;">
       <table id= "result_table" border="1" class="table table-hover">
 <thead>
         <th>Drużyna</th>
@@ -610,6 +645,7 @@ Kontakt:<br/>
 	
 	<div id="timetable_list" class="tab-pane fade">
       <h3>Terminarz</h3>
+	  <hr style="border-width: 2px 2px 0; border-style: solid; border-color: palevioletred; width: 100%; margin-left: auto; margin-right: auto;">
       <table id= "timetable_list" border="1" class="table table-hover">
 <thead>
         <th>Drużyny</th>
@@ -627,7 +663,7 @@ Kontakt:<br/>
 	<div id="results" class="tab-pane fade">
       
 	  <h3>Dodawanie wyniku meczu</h3>
-	  
+	  <hr style="border-width: 2px 2px 0; border-style: solid; border-color: palevioletred; width: 100%; margin-left: auto; margin-right: auto;">
 	  <form id="formRequest2">
  
  
@@ -643,8 +679,8 @@ Kontakt:<br/>
 <p>Godzina rozegrania</p>
 <input name="match_time" id="match_time" type="time" />
 <center>
-<input type="button" name="Submit" id="Submit" onclick="postContactToGoogle_Result()" value="Zapisz"/>
-<input type="reset" value="Reset"/>
+<input type="button" name="Submit" id="Submit" class="btn btn-primary" onclick="postContactToGoogle_Result()" value="Zapisz"/>
+<input type="reset" class="btn btn-primary" value="Reset"/>
 </center>
 
 
@@ -659,9 +695,10 @@ Kontakt:<br/>
 	<div id="settings" class="tab-pane fade">
       
 	  <h3>Informacje o użytkowniku</h3>
+	  <hr style="border-width: 2px 2px 0; border-style: solid; border-color: palevioletred; width: 100%; margin-left: auto; margin-right: auto;">
 	  <input type="text" placeholder="Wpisz swoje imię" id="inputString" />
 
-<button type="button" onclick="saveStatusLocally()">Zapisz</button>
+<button type="button" class="btn btn-primary" onclick="saveStatusLocally()">Zapisz</button>
 
 
 
