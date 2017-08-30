@@ -325,14 +325,14 @@ $('#loader').html(data);
 <script>
 
 $(function() {
-$select = $('#result3');
+$select3 = $('#result3');
 var entries = [];
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Teams";
 $.getJSON( dmJSON, function(data) {
 
 $('#loader').html(data);
    $.each(data.Teams, function(i, f) {
-      $select.append('<option id="' + f.Nazwa_drużyny + '">' + f.Nazwa_drużyny + '</option>');
+      $select3.append('<option id="' + f.Nazwa_drużyny + '">' + f.Nazwa_drużyny + '</option>');
  });
 
 });
@@ -340,13 +340,13 @@ $('#loader').html(data);
 });
 
 $(function() {
-$select2 = $('#result4');
+$select4 = $('#result4');
 var entries = [];
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=Teams";
 $.getJSON( dmJSON, function(data) {
 $('#loader').html(data);
    $.each(data.Teams, function(i, f) {
-      $select2.append('<option id="' + f.Nazwa_drużyny + '">' + f.Nazwa_drużyny + '</option>');
+      $select4.append('<option id="' + f.Nazwa_drużyny + '">' + f.Nazwa_drużyny + '</option>');
  });
 
 });
@@ -359,7 +359,7 @@ $('#loader').html(data);
 $(function() {
 
 
-$select3 = $('#news_header');
+$select5 = $('#news_header');
 var entries = [];
 
 var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9bH5fpt7bKV50p2bM/exec?id=1boBwGizrGX8HfzUNCo3W8PAQMl3mfQj1nxTAKSGO72k&sheet=News";
@@ -367,7 +367,7 @@ var dmJSON = "https://script.google.com/macros/s/AKfycbygukdW3tt8sCPcFDlkMnMuNu9
 $.getJSON( dmJSON, function(data) {
 $('#loader').html(data);
    $.each(data.News, function(i, f) {
-      $select3.prepend('<div class="card-header-blue">  <h4 class="card-heading" id="' + f.Tytuł + '">' + f.Tytuł + '</h4></div> </br><div class="card-body"><p class="card-p" id="' + f.Tytuł + '">' + f.Treść_aktualności + '</p></div></br></br>');
+      $select5.prepend('<div class="card-header-blue">  <h4 class="card-heading" id="' + f.Tytuł + '">' + f.Tytuł + '</h4></div> </br><div class="card-body"><p class="card-p" id="' + f.Tytuł + '">' + f.Treść_aktualności + '</p></div></br></br>');
  });
 
 });
