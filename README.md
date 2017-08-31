@@ -15,4 +15,5 @@ Aplikacja "Footbal League" jest narzędziem ułatwiającym organizację oraz śl
 ### Autorzy: ###
 
 Krzysztof Bartosz - Team Manager
+
 Karol Legutek
