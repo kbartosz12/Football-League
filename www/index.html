@@ -468,7 +468,7 @@
                 $('#loader').html(data);
                 $.each(data.Timetable, function(i, f) {
                     if (f.Drużyna_1 == "#N/A" || f.Drużyna_1 == '' || f.Drużyna_2 == "#N/A" || f.Drużyna_2 == '') {} else {
-                        var tblRow = "<tr>" + "<td><b>" + f.Drużyna_1 + " - " + f.Drużyna_2 + "</b></td>" + "<td>" + f.Data + ' ' + f.Godzina + "</td>" + "<td>" + '<a href="http://maps.google.com/?q=' + f.Miejsce + '">' + f.Miejsce + "</a></td>" + "</tr>"
+                        var tblRow = "<tr>" + "<td><b>" + f.Drużyna_1 + " - " + f.Drużyna_2 + "</b></td>" + "<td>" + f.Data + ' ' + f.Godzina + "</td>" + "<td>" + '<a href="http://maps.google.com/?q=' + f.Miejsce + '">' + f.Miejsce + "</a></td>" + "<td>" + '  <iframe class="frame"  src="http://forecast.io/embed/#lat=50.0467446&lon=19.9348338&name=Krakow&color=#4C4C73&font=Georgia&units=si"></iframe>' + "</td></tr>"
                         $(tblRow).appendTo("#timetable_list tbody");
                     }
                 });
